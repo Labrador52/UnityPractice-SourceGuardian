@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public SceneManager SceneManager;
 
     //Singltton mode
     public static GameManager instance;
@@ -15,16 +14,13 @@ public class GameManager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            if(instance == this)
-            {
-                Destroy(gameObject);
-                return;
-            }
+            Destroy(gameObject);
+            return;
         }
-        DontDestroyOnLoad(gameObject);
     }
     // Start is called before the first frame update
     private void Start()
