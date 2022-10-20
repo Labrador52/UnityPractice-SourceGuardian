@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 
 public class LanguageController : MonoBehaviour
 {
+    //Singleton mode
     public static LanguageController instance;
     private void Awake()
     {
@@ -20,4 +21,25 @@ public class LanguageController : MonoBehaviour
             return;
         }
     }
+
+    public Dictionary<string, Language> LanguageLib = new Dictionary<string, Language>();
+
+    private void loadLanguage()
+    {
+        foreach (var item in Resources.LoadAll("Language"))
+        {
+            TextAsset t = (TextAsset)item;
+            string js = t.text;
+            Language Lan = JsonConvert.DeserializeObject<Language>(js);
+            LanguageLib.Add(Lan.LanguageType,Lan);
+        }
+    }
+}
+
+public class Language
+{
+    public string LanguageType;
+    public string Author;
+    public string Version;
+    public Dictionary<string, string> Lib = new Dictionary<string, string>();
 }
