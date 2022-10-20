@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
-    //Singltton mode
+    //Singleton mode
     public static GameManager instance;
 
     private void Awake()
